@@ -7,6 +7,8 @@ estimate position of landmarks with high efficiency.
 - A novel EKF-based VINS framework is developed to
 achieve ego-motion and landmark estimation simultaneously with high accuracy and efficiency.
 
+**ROS 2 Jazzy** · [Stereo VIO with single-AprilTag initialization](ros2/README.md).
+
 ## 1. License
 
 The code is licensed under GPLv3.

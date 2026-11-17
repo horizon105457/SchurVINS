@@ -1,0 +1,7 @@
+/workspace/_out/
+/workspace/upstream/
+/workspace/replay/
+/workspace/configs/board/
+
+__pycache__/
+*.pyc

@@ -1,0 +1,7 @@
+/schurvins:
+  ros__parameters:
+    tag_id: 12
+    tag_size_m: 0.20
+    tag_frame: tag_world
+    tag_position_tolerance_m: 0.06
+    tag_angle_tolerance_deg: 5.0

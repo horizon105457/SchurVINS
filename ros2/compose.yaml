@@ -1,0 +1,31 @@
+name: schurvins-jazzy
+services:
+  vio:
+    image: hexbot-vio-env:jazzy-${HOST_ARCH:-amd64}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+      args:
+        ROS_IMAGE: ${ROS_IMAGE:-ros:jazzy-ros-base@sha256:31daab66eef9139933379fb67159449944f4e2dcf2e22c2d12cc715f29873e0f}
+        UBUNTU_MIRROR: ${UBUNTU_MIRROR:-https://mirrors.ustc.edu.cn}
+    user: ${LOCAL_UID:-1000}:${LOCAL_GID:-1000}
+    init: true
+    network_mode: host
+    ipc: private
+    shm_size: 1gb
+    environment:
+      HEXBOT_VIO_CONTAINER: "1"
+      ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-73}
+      ROS_AUTOMATIC_DISCOVERY_RANGE: ${ROS_AUTOMATIC_DISCOVERY_RANGE:-LOCALHOST}
+      HOME: /workspaces/schurvins_ws/_out/home
+      BUILD_JOBS: ${BUILD_JOBS:-2}
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+    volumes:
+      - ./workspace:/workspaces/schurvins_ws
+      - ..:/workspaces/schurvins_ws/upstream/SchurVINS:ro
+      - ./tests:/validation:ro
+    working_dir: /workspaces/schurvins_ws
+    entrypoint: [/bin/bash, /workspaces/schurvins_ws/scripts/inside.sh]
+    command: [bash]
